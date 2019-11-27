@@ -1,7 +1,7 @@
 const hooks = require('require-extension-hooks');
 
 if (process.env.TEST === 'unit') {
-  require('jsdom-global')()
+  require('jsdom-global')();
   require('browser-env');
   const Vue = require('vue');
   Vue.config.productionTip = false;
