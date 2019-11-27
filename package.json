@@ -24,7 +24,6 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/stylelint-module": "^3.1.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "ava": "^2.2.0",
     "babel-eslint": "^10.0.1",
@@ -37,7 +36,6 @@
     "prettier": "^1.16.4",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
-    "require-extension-hooks-vue": "^2.0.0",
-    "stylelint": "^10.1.0"
+    "require-extension-hooks-vue": "^2.0.0"
   }
 }
