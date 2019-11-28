@@ -1,0 +1,65 @@
+version: 2.1
+
+executors:
+  node:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/project
+
+commands:
+  attach-project:
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+
+jobs:
+  setup:
+    executor: node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install npm
+          command: npm ci
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - node_modules
+
+  lint:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Lint
+          command: npm run lint
+
+  test:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Test
+          command: npm run test
+
+workflows:
+  setup-test:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
