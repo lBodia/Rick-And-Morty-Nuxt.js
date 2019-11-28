@@ -50,11 +50,23 @@ jobs:
     steps:
       - attach-project
       - run:
-          name: Test
+          name: Tests
           command: npm run test
 
+  deploy:
+    executor: node
+    steps:
+      - attach-project
+      - add_ssh_keys:
+          fingerprints:
+            - $FINGERPRINT
+      - run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy on server
+          command: ssh $SSH_USER@$SSH_HOST '~/scripts/deploy.sh'
+
 workflows:
-  setup-test:
+  build-test-deploy:
     jobs:
       - setup
       - lint:
@@ -63,3 +75,12 @@ workflows:
       - test:
           requires:
             - setup
+      - deploy:
+          requires:
+            - lint
+            - test
+          filters:
+            branches:
+              only:
+                - master
+
