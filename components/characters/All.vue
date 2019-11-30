@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>All <span>characters</span></h2>
+    <h2 data-aos="fade-up">All <span>characters</span></h2>
     <characters-list :characters="characters"></characters-list>
     <client-only>
       <infinite-loading

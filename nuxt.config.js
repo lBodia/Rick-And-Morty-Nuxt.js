@@ -43,6 +43,7 @@ export default {
     { src: '~/plugins/vue-lazyload.js', ssr: false },
     { src: '~/plugins/vuex-persist.js', ssr: false },
     { src: '~/plugins/fontawesome.js', ssr: false },
+    { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/filters.js' },
   ],
   /*

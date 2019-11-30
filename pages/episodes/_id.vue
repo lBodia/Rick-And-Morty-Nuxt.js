@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2 class="h2">
+    <h2 class="h2" data-aos="fade-down">
       Episode <span>{{ episode.name }}</span>
     </h2>
 
-    <div class="columns">
+    <div class="columns" data-aos="fade-down">
       <div class="column">
         <info-box :value="episode.air_date" title="Premiere Date"></info-box>
       </div>
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <h2 class="mt4">Episode <span>characters</span></h2>
+    <h2 class="mt4" data-aos="fade-up">Episode <span>characters</span></h2>
     <characters-list :characters="characters"></characters-list>
   </div>
 </template>

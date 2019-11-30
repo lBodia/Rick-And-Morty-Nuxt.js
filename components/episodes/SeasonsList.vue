@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(seasonEpisodes, season) in seasons" :key="season" class="mb3">
-      <h2>
+      <h2 data-aos="fade-up">
         Season <span>{{ season | parseInt }}</span>
       </h2>
       <div class="mb4">
