@@ -14,7 +14,14 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -23,7 +30,12 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+
+  styleResources: {
+    scss: '@/assets/scss/variables.scss',
+  },
+
+  css: ['@/assets/scss/app.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -39,13 +51,12 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Axios module configuration
