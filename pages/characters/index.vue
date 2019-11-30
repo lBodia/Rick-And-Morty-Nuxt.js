@@ -1,9 +1,15 @@
 <template>
-  <div></div>
+  <all-characters-list></all-characters-list>
 </template>
 
 <script>
-export default {};
-</script>
+import AllCharactersList from '~/components/characters/All.vue';
 
-<style lang="scss" scoped></style>
+export default {
+  transition: 'fade',
+
+  components: {
+    AllCharactersList,
+  },
+};
+</script>

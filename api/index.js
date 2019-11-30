@@ -18,8 +18,10 @@ const preparePayload = payload => {
   }
 
   if (typeof payload === 'object') {
-    const params = new URLSearchParams(payload);
-    return '/?' + params.toString();
+    const query = Object.keys(payload)
+      .map(key => key + '=' + payload[key])
+      .join('&');
+    return `/?${query}`;
   }
 
   throw new TypeError(

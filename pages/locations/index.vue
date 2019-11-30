@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>
+    <h2>TODO: <span>locations</span></h2>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  transition: 'fade',
+};
 </script>
-
-<style lang="scss" scoped></style>

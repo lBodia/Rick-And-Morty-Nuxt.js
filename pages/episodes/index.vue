@@ -1,9 +1,17 @@
 <template>
-  <div></div>
+  <div>
+    <all-episodes-list></all-episodes-list>
+  </div>
 </template>
 
 <script>
-export default {};
-</script>
+import AllEpisodesList from '~/components/episodes/All';
 
-<style lang="scss" scoped></style>
+export default {
+  transition: 'fade',
+
+  components: {
+    AllEpisodesList,
+  },
+};
+</script>
