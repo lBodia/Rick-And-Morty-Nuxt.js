@@ -2,7 +2,7 @@
   <router-link :to="{ name: 'characters-id', params: { id: character.id } }">
     <article class="teaser">
       <div class="teaser__image">
-        <img :src="character.image" alt="" />
+        <img v-lazy="character.image" alt="" />
       </div>
       <header class="teaser__header has-text-centered">
         <div class="teaser__name">

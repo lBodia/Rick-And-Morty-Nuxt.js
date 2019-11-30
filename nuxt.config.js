@@ -39,7 +39,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/filters.js' }],
+  plugins: [
+    { src: '~/plugins/vue-lazyload.js', ssr: false },
+    { src: '~/plugins/filters.js' },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
