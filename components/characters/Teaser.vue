@@ -1,6 +1,13 @@
 <template>
   <router-link :to="{ name: 'characters-id', params: { id: character.id } }">
     <article class="teaser">
+      <div
+        @click.prevent="toggleLike(character.id)"
+        :class="{ active: isLiked(character.id) }"
+        class="teaser__like"
+      >
+        <font-awesome-icon :icon="['far', 'heart']" />
+      </div>
       <div class="teaser__image">
         <img v-lazy="character.image" alt="" />
       </div>
@@ -37,12 +44,30 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+
+library.add(faHeart);
+
 export default {
   props: {
     character: {
       type: Object,
       required: true,
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      isLiked: 'favorites/isCharacterLiked',
+    }),
+  },
+
+  methods: {
+    ...mapMutations({
+      toggleLike: 'favorites/toggleCharacter',
+    }),
   },
 };
 </script>
@@ -120,6 +145,34 @@ export default {
     color: $grey-light;
     margin-top: 0.3rem;
     font-size: 0.9rem;
+  }
+
+  &__like {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: $teaser-background;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &.active {
+      color: $primary;
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+    &:hover {
+      background: $primary;
+    }
   }
 }
 </style>
