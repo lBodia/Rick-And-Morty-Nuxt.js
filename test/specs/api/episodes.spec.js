@@ -10,7 +10,6 @@ test('getEpisodes() | Check episode filter', async t => {
   t.deepEqual(keys, ['info', 'results']);
 
   response.results.forEach(result => {
-    console.log(result.name);
     t.is(result.name.includes(name), true);
     t.is(result.episode.includes(episode), true);
   });
