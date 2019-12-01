@@ -31,12 +31,6 @@
             <td>Gender</td>
             <td class="has-text-right">{{ character.gender }}</td>
           </tr>
-          <tr>
-            <td>Status</td>
-            <td class="has-text-right">
-              {{ character.status }}
-            </td>
-          </tr>
         </table>
       </div>
     </article>
