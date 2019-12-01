@@ -1,5 +1,5 @@
 const test = require('ava');
-const { getEpisodes } = require('../../../api');
+const { getEpisodes } = require('~/api');
 
 test('getEpisodes() | Check episode filter', async t => {
   const name = 'Pilot';

@@ -1,5 +1,5 @@
 const test = require('ava');
-const { getLocations } = require('../../../api');
+const { getLocations } = require('~/api');
 
 test('getLocations() | Check location filter', async t => {
   const name = 'Earth';

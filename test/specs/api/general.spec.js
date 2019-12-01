@@ -1,5 +1,5 @@
 const test = require('ava');
-const { getCharacters, getEpisodes, getLocations } = require('../../../api');
+const { getCharacters, getEpisodes, getLocations } = require('~/api');
 
 function check(method) {
   const name = method.name;

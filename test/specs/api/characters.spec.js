@@ -1,5 +1,5 @@
 const test = require('ava');
-const { getCharacters } = require('../../../api');
+const { getCharacters } = require('~/api');
 
 test('getCharacters() | Check character filter', async t => {
   const name = 'Morty';
