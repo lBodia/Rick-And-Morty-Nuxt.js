@@ -53,6 +53,12 @@ export default {
     return !isNaN(+params.id);
   },
 
+  head() {
+    return {
+      title: this.character.name,
+    };
+  },
+
   components: {
     EpisodesSeasonsList,
     InfoBox,

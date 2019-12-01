@@ -7,5 +7,11 @@
 <script>
 export default {
   transition: 'fade',
+
+  head() {
+    return {
+      title: 'All locations',
+    };
+  },
 };
 </script>

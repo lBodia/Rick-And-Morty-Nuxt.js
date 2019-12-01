@@ -21,6 +21,12 @@ import { getCharacters, getEpisodes } from '~/api';
 export default {
   transition: 'fade',
 
+  head() {
+    return {
+      title: 'Homepage',
+    };
+  },
+
   components: {
     CharactersList,
     EpisodesList,

@@ -32,6 +32,12 @@ export default {
     InfoBox,
   },
 
+  head() {
+    return {
+      title: this.episode.name,
+    };
+  },
+
   mixins: [detailsPage],
 
   data() {

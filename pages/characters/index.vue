@@ -8,6 +8,12 @@ import AllCharactersList from '~/components/characters/All.vue';
 export default {
   transition: 'fade',
 
+  head() {
+    return {
+      title: 'All Characters',
+    };
+  },
+
   components: {
     AllCharactersList,
   },
