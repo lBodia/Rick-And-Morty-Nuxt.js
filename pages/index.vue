@@ -1,68 +1,86 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        rick-and-morty
-      </h1>
-      <h2 class="subtitle">
-        Rick And Morty Api Nuxt.js implementation
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <h2 v-if="characters.length > 0" data-aos="fade-up">
+      Some <span>characters</span>
+    </h2>
+    <characters-list :characters="characters"></characters-list>
+
+    <h2 v-if="episodes.length > 0" data-aos="fade-up">
+      Some <span>episodes</span>
+    </h2>
+    <episodes-list :episodes="episodes" :show-season="true"></episodes-list>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
+import randomIntArray from 'random-int-array';
+import CharactersList from '~/components/characters/List';
+import EpisodesList from '~/components/episodes/List';
+import { getCharacters, getEpisodes } from '~/api';
 
 export default {
+  transition: 'fade',
+
+  head() {
+    return {
+      title: 'Homepage',
+    };
+  },
+
   components: {
-    Logo,
+    CharactersList,
+    EpisodesList,
+  },
+
+  data() {
+    return {
+      totalCharacters: 5,
+      totalEpisodes: 8,
+      characters: [],
+      episodes: [],
+    };
+  },
+
+  async asyncData() {
+    try {
+      const [characters, episodes] = await Promise.all([
+        getCharacters(),
+        getEpisodes(),
+      ]);
+
+      return {
+        totalCharacters: characters.info.count,
+        totalEpisodes: episodes.info.count,
+      };
+    } catch (e) {
+      return {};
+    }
+  },
+
+  created() {
+    this.fetchCharacters();
+    this.fetchEpisodes();
+  },
+
+  methods: {
+    async fetchCharacters() {
+      const ids = this.getRandomIds(this.totalCharacters, 5);
+      this.characters = await getCharacters(ids);
+    },
+
+    async fetchEpisodes() {
+      const ids = this.getRandomIds(this.totalEpisodes, 8);
+      this.episodes = await getEpisodes(ids);
+    },
+
+    getRandomIds(max, count) {
+      return randomIntArray({
+        count,
+        max,
+        min: 1,
+        unique: true,
+      });
+    },
   },
 };
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

@@ -4,17 +4,25 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Rick And Morty Nuxt.js App',
+    titleTemplate: '%s - Rick And Morty',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content: 'A simple Nuxt.js implementation of Rick and Morty API',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'preload',
+        as: 'style',
+        href:
+          'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -23,11 +31,22 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+
+  styleResources: {
+    scss: '@/assets/scss/variables.scss',
+  },
+
+  css: ['@/assets/scss/app.scss'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-lazyload.js', ssr: false },
+    { src: '~/plugins/vuex-persist.js', ssr: false },
+    { src: '~/plugins/fontawesome.js', ssr: false },
+    { src: '~/plugins/aos.js', ssr: false },
+    { src: '~/plugins/filters.js' },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -39,13 +58,12 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Axios module configuration
