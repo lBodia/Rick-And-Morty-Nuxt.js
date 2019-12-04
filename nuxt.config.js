@@ -6,6 +6,7 @@ export default {
   head: {
     title: 'Rick And Morty Nuxt.js App',
     titleTemplate: '%s - Rick And Morty',
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

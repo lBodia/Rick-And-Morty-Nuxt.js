@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="{ name: 'episodes-id', params: { id: episode.id } }">
+  <router-link
+    :to="{ name: 'episodes-id', params: { id: episode.id } }"
+    :aria-label="ariaLabel"
+  >
     <div class="teaser">
       <div class="teaser__number">
         Episode {{ episodeNumber | parseInt }}
@@ -22,6 +25,12 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+
+  data() {
+    return {
+      ariaLabel: `Read more about ${this.episode.episode} episode`,
+    };
   },
 
   computed: {
