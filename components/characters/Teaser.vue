@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="{ name: 'characters-id', params: { id: character.id } }">
+  <router-link
+    :to="{ name: 'characters-id', params: { id: character.id } }"
+    :aria-label="ariaLabel"
+  >
     <article class="teaser">
       <div
         @click.prevent="toggleLike(character.id)"
@@ -50,6 +53,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+
+  data() {
+    return {
+      ariaLabel: `Read more about ${this.character.name} character`,
+    };
   },
 
   computed: {
