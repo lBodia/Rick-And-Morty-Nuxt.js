@@ -12,7 +12,7 @@
         <font-awesome-icon :icon="['far', 'heart']" />
       </div>
       <div class="teaser__image">
-        <img v-lazy="character.image" alt="" />
+        <img v-lazy="character.image" class="lazy" alt="" />
       </div>
       <header class="teaser__header has-text-centered">
         <div class="teaser__name">

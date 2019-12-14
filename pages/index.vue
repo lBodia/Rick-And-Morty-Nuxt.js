@@ -1,22 +1,22 @@
 <template>
   <div>
+    <h1><span>Rick And Morty API</span> Nuxt.js App</h1>
+    <div class="mb4">
+      This is a tiny Nuxt.js application, which uses
+      <a href="https://rickandmortyapi.com/">Rick & Morty API</a> to visualize
+      characters and episodes from Rick & Morty TV show.
+    </div>
+
     <h2 v-if="characters.length > 0" data-aos="fade-up">
-      Some <span>characters</span>
+      Alternate Versions of <span>{{ characterName }}</span>
     </h2>
     <characters-list :characters="characters"></characters-list>
-
-    <h2 v-if="episodes.length > 0" data-aos="fade-up">
-      Some <span>episodes</span>
-    </h2>
-    <episodes-list :episodes="episodes" :show-season="true"></episodes-list>
   </div>
 </template>
 
 <script>
-import randomIntArray from 'random-int-array';
 import CharactersList from '~/components/characters/List';
-import EpisodesList from '~/components/episodes/List';
-import { getCharacters, getEpisodes } from '~/api';
+import { getCharacters } from '~/api';
 
 export default {
   transition: 'fade',
@@ -29,7 +29,6 @@ export default {
 
   components: {
     CharactersList,
-    EpisodesList,
   },
 
   data() {
@@ -42,45 +41,20 @@ export default {
   },
 
   async asyncData() {
+    const characterNames = ['Rick', 'Morty', 'Summer', 'Beth', 'Jerry'];
+    const randomIndex = Math.floor(Math.random() * characterNames.length);
+    const characterName = characterNames[randomIndex];
+
     try {
-      const [characters, episodes] = await Promise.all([
-        getCharacters(),
-        getEpisodes(),
-      ]);
+      const characters = await getCharacters({ name: characterName });
 
       return {
-        totalCharacters: characters.info.count,
-        totalEpisodes: episodes.info.count,
+        characters: characters.results,
+        characterName,
       };
     } catch (e) {
       return {};
     }
-  },
-
-  created() {
-    this.fetchCharacters();
-    this.fetchEpisodes();
-  },
-
-  methods: {
-    async fetchCharacters() {
-      const ids = this.getRandomIds(this.totalCharacters, 5);
-      this.characters = await getCharacters(ids);
-    },
-
-    async fetchEpisodes() {
-      const ids = this.getRandomIds(this.totalEpisodes, 8);
-      this.episodes = await getEpisodes(ids);
-    },
-
-    getRandomIds(max, count) {
-      return randomIntArray({
-        count,
-        max,
-        min: 1,
-        unique: true,
-      });
-    },
   },
 };
 </script>

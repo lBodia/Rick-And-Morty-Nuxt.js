@@ -8,6 +8,10 @@
 export default {
   transition: 'fade',
 
+  asyncData({ error }) {
+    error({ statusCode: 404, message: 'This page is not done yet!' });
+  },
+
   head() {
     return {
       title: 'All locations',
