@@ -1,13 +1,16 @@
 # Rick and Morty Api Nuxt.js 
 
 [![CircleCI](https://circleci.com/gh/lBodia/Rick-And-Morty-Nuxt.js/tree/master.svg?style=shield)](https://circleci.com/gh/lBodia/Rick-And-Morty-Nuxt.js/tree/master)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-A simple Nuxt.js implementation of [Rick and Morty API](https://rickandmortyapi.com/)
+This is a tiny Nuxt.js application, which uses [Rick and Morty API](https://rickandmortyapi.com/) to visualize characters and episodes from Rick & Morty TV show.
 
 The Rick and Morty API is a RESTful and GraphQL API based on the television show Rick and Morty. 
 It provides access to hundreds of characters, images, locations and episodes.
 
-You can check the live version here [here](http://rick-and-morty.ga/)
+The app is automatically built and deployed to the Digital Ocean using CircleCI integration with Github.
+
+You can check the live version [here](http://rick-and-morty.ga/) 
 
 ## Build Setup
 
