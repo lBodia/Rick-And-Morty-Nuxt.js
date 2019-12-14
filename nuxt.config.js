@@ -81,6 +81,9 @@ export default {
           customProperties: false,
         },
       },
+      plugins: {
+        'rucksack-css': {},
+      },
     },
     /*
      ** You can extend webpack config here

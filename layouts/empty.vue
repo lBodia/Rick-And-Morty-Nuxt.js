@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <main class="main">
-      <div class="container pb4">
+      <div class="container p2">
         <nuxt />
       </div>
     </main>
@@ -11,10 +11,8 @@
 <style lang="scss" scoped>
 .app {
   display: flex;
-}
-
-.main {
-  flex: 1;
-  padding: 2rem;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
