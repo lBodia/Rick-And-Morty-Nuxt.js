@@ -66,7 +66,7 @@ export default {
       margin: 1rem 0;
 
       a {
-        color: #5f6165;
+        color: $text;
         display: block;
         padding: 0.5rem 1rem;
       }
