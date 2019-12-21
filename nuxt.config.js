@@ -1,3 +1,5 @@
+import { getCharacters, getEpisodes } from './api';
+
 export default {
   mode: 'universal',
   /*
@@ -24,6 +26,35 @@ export default {
           'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap',
       },
     ],
+  },
+  robots: {
+    UserAgent: '*',
+    Disallow: '/locations',
+    Allow: '/',
+  },
+  sitemap: {
+    exclude: ['/locations'],
+    routes: async () => {
+      try {
+        const data = [];
+        const fillDataWithEndpoints = (endpoint, count) => {
+          for (let i = 1; i <= count; i++) {
+            data.push(`/${endpoint}/${i}`);
+          }
+        };
+        const [characters, episodes] = await Promise.all([
+          getCharacters(),
+          getEpisodes(),
+        ]);
+
+        fillDataWithEndpoints('characters', characters.info.count);
+        fillDataWithEndpoints('episodes', episodes.info.count);
+
+        return data;
+      } catch (e) {
+        return [];
+      }
+    },
   },
   /*
    ** Customize the progress-bar color
@@ -65,6 +96,8 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
   /*
    ** Axios module configuration
